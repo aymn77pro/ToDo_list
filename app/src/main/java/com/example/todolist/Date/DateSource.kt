@@ -5,11 +5,10 @@ import com.example.todolist.model.ToDoViweModel
 
 class DateSource {
     val viewModel = ToDoViweModel()
-    fun loadNote():List<DataList> {
-        return listOf<DataList>(
-            DataList(viewModel.title.value.toString(),viewModel.subTitle.value.toString(),viewModel.date.value.toString())
-        )
-    }
-
-
+   fun loadNote(): MutableList<DataList> {
+     return userBasrfList
 }
+}
+
+var userBasrfList: MutableList<DataList> = mutableListOf()
+

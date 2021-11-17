@@ -1,56 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="#FFFCFC"
-    android:padding="20dp"
-    android:layout_margin="16dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:id="@+id/cerdView"
-    >
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/titleName"
-        android:layout_width="wrap_content"
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.todolist.model.ToDoViweModel" />
+        <variable
+            name="editToDo"
+            type="com.example.todolist.Edit_ToDo" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:cardBackgroundColor="#FFFCFC"
+        android:padding="20dp"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/cerdView">
 
-    <TextView
-        android:id="@+id/subTitleName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16sp"
-        android:text="@string/subTitle"
-        app:layout_constraintStart_toStartOf="@id/titleName"
-        app:layout_constraintTop_toBottomOf="@id/titleName" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/completedlist"
-        android:layout_width="38dp"
-        android:layout_height="29dp"
-        android:padding="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/datelist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/completedlist"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        tools:text="@string/time"
-        />
+            <TextView
+                android:id="@+id/titleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/subTitleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16sp"
+                app:layout_constraintStart_toStartOf="@id/titleName"
+                app:layout_constraintTop_toBottomOf="@id/titleName" />
+
+            <CheckBox
+                android:id="@+id/completedlist"
+                android:layout_width="38dp"
+                android:layout_height="29dp"
+                android:padding="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/datelist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/completedlist"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                tools:text="@string/time" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

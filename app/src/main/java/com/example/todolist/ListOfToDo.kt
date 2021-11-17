@@ -27,10 +27,16 @@ class ListOfToDo : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding?.recycleN?.adapter = ListAdapter(context)
-        binding?.recycleN?.setHasFixedSize(true)
+        binding?.apply {
+            recycleN?.adapter = ListAdapter(this)
+            recycleN?.setHasFixedSize(true)
+        }
+
+
+
         binding?.addNote?.setOnClickListener{
-            var action = ListOfToDoDirections.actionListOfToDoToEditToDo()
+
+            var action = ListOfToDoDirections.actionListOfToDoToAddNote2()
             view.findNavController().navigate(action)
         }
     }

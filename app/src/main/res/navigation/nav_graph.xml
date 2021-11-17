@@ -8,19 +8,60 @@
     <fragment
         android:id="@+id/listOfToDo"
         android:name="com.example.todolist.ListOfToDo"
-        android:label="fragment_list_of_to_do"
-        tools:layout="@layout/fragment_list_of_to_do" >
+        android:label="what i do"
+        tools:layout="@layout/fragment_list_of_to_do">
         <action
             android:id="@+id/action_listOfToDo_to_edit_ToDo"
             app:destination="@id/edit_ToDo" />
+        <action
+            android:id="@+id/action_listOfToDo_to_addNote2"
+            app:destination="@id/addNote2" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="subTitle"
+            app:argType="string" />
+        <argument
+            android:name="data"
+            app:argType="string" />
+        <argument
+            android:name="imported"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="indext"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/edit_ToDo"
         android:name="com.example.todolist.Edit_ToDo"
-        android:label="fragment_edit__to_do"
-        tools:layout="@layout/fragment_edit__to_do" >
+        android:label="Edit Note"
+        tools:layout="@layout/fragment_edit__to_do">
         <action
             android:id="@+id/action_edit_ToDo_to_listOfToDo"
             app:destination="@id/listOfToDo" />
+        <argument
+            android:name="title"
+            android:defaultValue="Title"
+            app:argType="string" />
+        <argument
+            android:name="subTitle"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+        <argument
+            android:name="imported"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
+    <dialog
+        android:id="@+id/addNote2"
+        android:name="com.example.todolist.AddNote"
+        android:label="Add Note">
+        <action
+            android:id="@+id/action_addNote2_to_listOfToDo"
+            app:destination="@id/listOfToDo" />
+    </dialog>
 </navigation>
