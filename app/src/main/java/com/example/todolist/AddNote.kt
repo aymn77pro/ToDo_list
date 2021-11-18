@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.todolist.databinding.FragmentAddNoteBinding
-import com.example.todolist.model.TaskData
 import com.example.todolist.model.ToDoViweModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -59,7 +58,7 @@ class AddNote : BottomSheetDialogFragment() {
         _binding = null
     }
 
-    fun showDatePicker() {
+    fun  showDatePicker() {
 
         val datePicker = MaterialDatePicker.Builder.datePicker()
             .setTitleText("Select").setSelection(MaterialDatePicker.todayInUtcMilliseconds())
@@ -80,10 +79,7 @@ class AddNote : BottomSheetDialogFragment() {
     }
 
     fun addNewNote(){
-        shearModelView.TaskTime()
         shearModelView.addTask()
-//        val actionAddNote = AddNoteDirections.actionAddNote2ToListOfToDo(title = title.toString(),
-//                subTitle = subTitle.toString(),data = data,false,indext = 0, timeTask = 0)
         findNavController().navigate(R.id.action_addNote2_to_listOfToDo)
     }
 

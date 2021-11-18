@@ -40,6 +40,7 @@ class ListAdapter(context: FragmentListOfToDoBinding) : RecyclerView.Adapter<Lis
 
 
         holder.cerdView.setOnClickListener {
+            viewModel.TaskTime()
             val actionCard = ListOfToDoDirections.actionListOfToDoToEditToDo(
                     id=note.id, indext = position, timeCompare = note.timeCompare)
 
