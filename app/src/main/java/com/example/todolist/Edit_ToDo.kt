@@ -24,7 +24,7 @@ class Edit_ToDo : Fragment() {
     private var binding: FragmentEditToDoBinding? = null
     private var indext:Int = 0
     var taskID = 0
-    var Time:String=""
+    private   var Time:String=""
    private var smallTime:Long =0
 
     private val sharedViewModel: ToDoViweModel by activityViewModels()
@@ -44,14 +44,18 @@ class Edit_ToDo : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             editTodo = this@Edit_ToDo
         }
+            TaskTime()
 
-        TaskTime()
         arguments.let {
             taskID= it?.getInt("id",0)!!
             indext = it?.getInt("indext")
+            smallTime = it.getLong("timeCompare")
+            println("argument${it.getLong("timeCompare")}")
 
         }
+
       sharedViewModel.updateCurrentData(taskID)
+
     }
 
 
@@ -85,24 +89,33 @@ class Edit_ToDo : Fragment() {
             Time =  convertMillisecondsToReadableDate(it, "yyyy/MM/dd ")
 
             sharedViewModel.updateDate(Time)
+            sharedViewModel.camperBetweenTime(smallTime)
+
 
 
         }
 
             }
-    fun TaskTime(){
-        if (smallTime<=Calendar.getInstance().timeInMillis){
-            Toast.makeText(requireContext(),"Time up",Toast.LENGTH_LONG).show()
 
-        }
 
-    }
 
     private fun convertMillisecondsToReadableDate (dateMilliseconds: Long, datePattern: String): String{
         val format = SimpleDateFormat(datePattern, Locale.getDefault())
         return format.format(Date(dateMilliseconds))
     }
+                     //-------------------- caper between times-------------------------//
+    fun TaskTime() {
+     val x =  if (sharedViewModel.date.value ==""){
+            "Pick a Time"}
+        else if (sharedViewModel.timeCompare.value!!.toLong() < Calendar.getInstance().timeInMillis) {
+            "Time up"
+            }
+        else {
+            "there is still time"
+    }
+        sharedViewModel.resetTextTaskView(x)
 
+}
 }
 
 

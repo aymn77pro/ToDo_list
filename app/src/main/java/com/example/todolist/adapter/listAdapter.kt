@@ -35,9 +35,13 @@ class ListAdapter(context: FragmentListOfToDoBinding) : RecyclerView.Adapter<Lis
         holder.textSubTitle.text = note.subTitle.toString()
         holder.textDate.text = note.date.toString()
         holder.complet.isChecked=note.importing
+        println("adapter${note.timeCompare}")
+        println("adapter${note.date}")
+
+
         holder.cerdView.setOnClickListener {
             val actionCard = ListOfToDoDirections.actionListOfToDoToEditToDo(
-                    id=note.id, indext = position)
+                    id=note.id, indext = position, timeCompare = note.timeCompare)
 
            holder.itemView.findNavController().navigate(actionCard)
         }

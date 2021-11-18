@@ -1,19 +1,21 @@
 package com.example.todolist.model
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.todolist.Date.userBasrfTask
 
 var coreID=0
 data class TaskData(var title: String?="", var subTitle: String?="", var date: String?="",
-                    var importing:Boolean, var id:Int= coreID++)
+                    var importing:Boolean, var id:Int= coreID++, var timeCompare: Long = 0)
 
 class ToDoViweModel : ViewModel() {
-     val title = MutableLiveData<String>("")
+    val title = MutableLiveData<String>("")
     val subTitle = MutableLiveData<String>("")
     val date = MutableLiveData<String>("")
     val comblet = MutableLiveData<Boolean>(false)
+    val timeCompare = MutableLiveData<Long>(0)
+    val taxtTaskTime = MutableLiveData<String>()
+
 
 
     fun addTask() {
@@ -38,10 +40,6 @@ class ToDoViweModel : ViewModel() {
     date.value = dataUP
     }
 
-//    fun updateList() {
-//      userBasrfTask.set(indext,taskTask)
-//    }
-
 fun updateCurrentData(taskID:Int){
     var task= userBasrfTask.find { it.id==taskID }
     title.value=task?.title
@@ -49,8 +47,21 @@ fun updateCurrentData(taskID:Int){
     subTitle.value=task?.subTitle
     comblet.value=task?.importing
 }
+fun camperBetweenTime(camper:Long){
+    timeCompare.value = camper
+}
 
+    fun resetTextTaskView(TextView:String){
+        taxtTaskTime.value=TextView
+    }
 
+fun resetTask(){
+    title.value=""
+    subTitle.value=""
+    date.value=""
+    timeCompare.value=0
+    taxtTaskTime.value = ""
+}
 
 
 }

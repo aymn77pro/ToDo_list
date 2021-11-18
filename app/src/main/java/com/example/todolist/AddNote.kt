@@ -49,6 +49,7 @@ class AddNote : BottomSheetDialogFragment() {
         binding?.addNewNote?.setOnClickListener {
             addNewNote()
         }
+        shearModelView.resetTask()
 
     }
 
@@ -65,9 +66,10 @@ class AddNote : BottomSheetDialogFragment() {
             .build()
         datePicker.show(parentFragmentManager, "DatePicker")
         datePicker.addOnPositiveButtonClickListener {
-          //  time = it
+            time = it
           Time =  convertMillisecondsToReadableDate(it, "yyyy/MM/dd")
             shearModelView.updateDate(Time)
+            shearModelView.camperBetweenTime(time)
         }
 
     }
