@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         tools:context=".ListOfToDo">
 
-        <!-- TODO: Update blank fragment layout -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_n"
             android:layout_width="match_parent"
@@ -31,16 +30,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <Button
                 android:id="@+id/addNote"
+                android:text="Add new note"
+                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="25dp"
                 android:layout_marginEnd="176dp"
                 android:layout_marginBottom="28dp"
-
                 android:clickable="true"
-                android:src="@drawable/ic_baseline_add"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

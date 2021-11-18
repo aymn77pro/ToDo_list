@@ -1,18 +1,14 @@
 package com.example.todolist
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.todolist.databinding.FragmentAddNoteBinding
-import com.example.todolist.model.DataList
+import com.example.todolist.model.TaskData
 import com.example.todolist.model.ToDoViweModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -25,6 +21,8 @@ class AddNote : BottomSheetDialogFragment() {
     val binding get() = _binding
     val shearModelView :ToDoViweModel by activityViewModels()
     var Time:String=""
+    var time: Long = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,11 +65,9 @@ class AddNote : BottomSheetDialogFragment() {
             .build()
         datePicker.show(parentFragmentManager, "DatePicker")
         datePicker.addOnPositiveButtonClickListener {
-
-          Time =  convertMillisecondsToReadableDate(it, "EEE, MMM dd ")
+          //  time = it
+          Time =  convertMillisecondsToReadableDate(it, "yyyy/MM/dd")
             shearModelView.updateDate(Time)
-            Toast.makeText(requireContext(),"$Time", Toast.LENGTH_LONG).show()
-
         }
 
     }
@@ -82,13 +78,10 @@ class AddNote : BottomSheetDialogFragment() {
     }
 
     fun addNewNote(){
-        val title = binding?.taskTitleTextField?.text
-        val subTitle = binding?.taskDescriptionTextField?.text
-        val data = Time
-        shearModelView.addTask(DataList(title.toString(),subTitle.toString(),data,false))
-
-        val actionAddNote = AddNoteDirections.actionAddNote2ToListOfToDo(title = title.toString(),subTitle = subTitle.toString(),data = data,false,indext = 0)
-        findNavController().navigate(actionAddNote)
+        shearModelView.addTask()
+//        val actionAddNote = AddNoteDirections.actionAddNote2ToListOfToDo(title = title.toString(),
+//                subTitle = subTitle.toString(),data = data,false,indext = 0, timeTask = 0)
+        findNavController().navigate(R.id.action_addNote2_to_listOfToDo)
     }
 
 }

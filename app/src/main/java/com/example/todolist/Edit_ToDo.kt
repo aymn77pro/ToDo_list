@@ -1,21 +1,32 @@
 package com.example.todolist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.todolist.Date.userBasrfTask
 import com.example.todolist.databinding.FragmentEditToDoBinding
-import com.example.todolist.model.DataList
 import com.example.todolist.model.ToDoViweModel
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.properties.Delegates
 
 
 class Edit_ToDo : Fragment() {
     private var binding: FragmentEditToDoBinding? = null
-    private var indext : Int? = 0
+    private var indext:Int = 0
+    var taskID = 0
+    var Time:String=""
+   private var smallTime:Long =0
+
     private val sharedViewModel: ToDoViweModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,57 +44,65 @@ class Edit_ToDo : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             editTodo = this@Edit_ToDo
         }
+
+        TaskTime()
         arguments.let {
-            indext=it?.getInt("indext")
-            binding?.titleEdit?.setText(it?.getString("title"))
-            binding?.subTitleEdit?.setText(it?.getString("subTitle"))
-            binding?.timeEdit?.setText(it?.getString("date"))
-            binding!!.completOrNot.isChecked=it!!.getBoolean("imported")
-            binding!!.completOrNot.setOnCheckedChangeListener{context,isChecked ->
-                if (isChecked)true else false
-            }
+            taskID= it?.getInt("id",0)!!
+            indext = it?.getInt("indext")
+
         }
-
+      sharedViewModel.updateCurrentData(taskID)
     }
 
-    private fun saveEditValue(){
-        val titleValue = binding?.titleEdit?.text.toString()
-        val subTitleValue = binding?.subTitleEdit?.text.toString()
-        val dataValue = binding?.timeEdit?.text.toString()
-        val check = if (binding!!.completOrNot.isChecked)true else false
-         sharedViewModel.EditTask(DataList(titleValue,subTitleValue,dataValue,check), indext!!)
 
-    }
 
     fun EditNote() {
-        saveEditValue()
-       // val actionValue = Edit_ToDoDirections.actionEditToDoToListOfToDo(title = binding?.titleEdit?.text.toString()
-         //   , binding?.subTitleEdit?.text.toString(),binding?.timeEdit?.text.toString(),
-           // binding!!.completOrNot.isChecked, indext!!)
-        view?.findNavController()?.navigate(R.id.action_edit_ToDo_to_listOfToDo)
-    }
 
-    fun TimeTask(){
-
+        sharedViewModel.EditTask(indext)
+        findNavController().navigate(R.id.action_edit_ToDo_to_listOfToDo)
     }
 
     fun DeleteTask(){
-        sharedViewModel.RemoveTask(indext!!.toInt())
-        view?.findNavController()?.navigate(R.id.action_edit_ToDo_to_listOfToDo)
+        sharedViewModel.RemoveTask(indext)
+        findNavController().navigate(R.id.action_edit_ToDo_to_listOfToDo)
     }
 
-//    private fun onSaveValue(){
-//       val title = sharedViewModel.title
-//        val subTitle = sharedViewModel.subTitle
-//        val data = sharedViewModel.date
 
-//    }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
+    fun showDatePicker() {
+
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select").setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build()
+        datePicker.show(parentFragmentManager, "DatePicker")
+        datePicker.addOnPositiveButtonClickListener {
+            smallTime = it
+            Time =  convertMillisecondsToReadableDate(it, "yyyy/MM/dd ")
+
+            sharedViewModel.updateDate(Time)
+
+
+        }
+
+            }
+    fun TaskTime(){
+        if (smallTime<=Calendar.getInstance().timeInMillis){
+            Toast.makeText(requireContext(),"Time up",Toast.LENGTH_LONG).show()
+
+        }
+
+    }
+
+    private fun convertMillisecondsToReadableDate (dateMilliseconds: Long, datePattern: String): String{
+        val format = SimpleDateFormat(datePattern, Locale.getDefault())
+        return format.format(Date(dateMilliseconds))
+    }
+
 }
 
 

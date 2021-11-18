@@ -4,10 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/aymn7/AndroidStudioProjects/ToDolist2/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/aymn7/AndroidStudioProjects/ToDolist2/app/src/main/res/layout/fragment_add_note.xml" value="0.4" />
-        <entry key="..\:/Users/aymn7/AndroidStudioProjects/ToDolist2/app/src/main/res/layout/fragment_edit__to_do.xml" value="0.264" />
+        <entry key="..\:/Users/aymn7/AndroidStudioProjects/ToDolist2/app/src/main/res/layout/fragment_add_note.xml" value="0.2" />
+        <entry key="..\:/Users/aymn7/AndroidStudioProjects/ToDolist2/app/src/main/res/layout/fragment_edit__to_do.xml" value="0.20907297830374755" />
         <entry key="..\:/Users/aymn7/AndroidStudioProjects/ToDolist2/app/src/main/res/layout/fragment_list_of_to_do.xml" value="0.1" />
-        <entry key="..\:/Users/aymn7/AndroidStudioProjects/ToDolist2/app/src/main/res/layout/todo_dit.xml" value="0.264" />
+        <entry key="..\:/Users/aymn7/AndroidStudioProjects/ToDolist2/app/src/main/res/layout/todo_dit.xml" value="0.25125628140703515" />
       </map>
     </option>
   </component>

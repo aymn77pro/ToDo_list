@@ -37,15 +37,13 @@
                 android:layout_height="62dp"
                 android:layout_marginStart="8dp"
                 android:hint="Add a task"
-                android:inputType="textMultiLine"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints,SpeakableTextPresentCheck">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/task_title_text_field"
                     android:layout_width="match_parent"
+                    android:text="@={viewModel.title}"
                     android:layout_height="match_parent" />
-
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
@@ -75,9 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
-                    android:gravity="start"
-                    tools:layout_editor_absoluteX="-77dp"
-                    tools:layout_editor_absoluteY="6dp" />
+                    android:text="@={viewModel.subTitle}" />
             </com.google.android.material.textfield.TextInputLayout>
             <ImageView
                 android:id="@+id/task_date"

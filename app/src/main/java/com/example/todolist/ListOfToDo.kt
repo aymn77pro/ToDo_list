@@ -5,14 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.todolist.adapter.ListAdapter
 import com.example.todolist.databinding.FragmentListOfToDoBinding
+import com.example.todolist.model.ToDoViweModel
 
 class ListOfToDo : Fragment() {
    private var _binding :FragmentListOfToDoBinding? = null
     private val binding get() = _binding
-
+    private val sharedViewModel: ToDoViweModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -35,7 +37,6 @@ class ListOfToDo : Fragment() {
 
 
         binding?.addNote?.setOnClickListener{
-
             var action = ListOfToDoDirections.actionListOfToDoToAddNote2()
             view.findNavController().navigate(action)
         }

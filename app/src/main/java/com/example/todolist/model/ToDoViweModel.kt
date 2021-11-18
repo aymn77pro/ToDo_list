@@ -1,63 +1,55 @@
 package com.example.todolist.model
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.todolist.Date.userBasrfList
+import com.example.todolist.Date.userBasrfTask
 
-
-class DataList(var title: String?="", var subTitle: String?="", var date: String?="",var importing:Boolean)
+var coreID=0
+data class TaskData(var title: String?="", var subTitle: String?="", var date: String?="",
+                    var importing:Boolean, var id:Int= coreID++)
 
 class ToDoViweModel : ViewModel() {
-    //val dateTask = EndOfTimeTask()
-    private val _title = MutableLiveData<String>()
-    val title:LiveData<String>  =  _title
+     val title = MutableLiveData<String>("")
+    val subTitle = MutableLiveData<String>("")
+    val date = MutableLiveData<String>("")
+    val comblet = MutableLiveData<Boolean>(false)
 
-        private val _subTitle = MutableLiveData<String>()
-    val subTitle : LiveData<String>  =  _subTitle
 
-     private val _date = MutableLiveData<String>()
-    val date : MutableLiveData<String>  =  _date
-
-    private val _comblet = MutableLiveData<Boolean>()
-    val  comblet:LiveData<Boolean> = _comblet
-
-    fun addTask(newTask: DataList) {
-        userBasrfList.add(newTask)
+    fun addTask() {
+        userBasrfTask.add(TaskData(title.value,subTitle.value,date.value, comblet.value!!))
     }
-    fun EditTask(editTask:DataList,indext:Int){
-        userBasrfList.set(indext,editTask)
+    fun EditTask(indext: Int){
+
+ //       var task= userBasrfTask.find { it.id==indext }
+//        title.value=task?.title
+//        date.value = task?.date
+//        subTitle.value=task?.subTitle
+//        comblet.value=task?.importing
+        userBasrfTask.set(indext,TaskData(title.value,subTitle.value,date.value, comblet.value!!))
+
+
     }
     fun RemoveTask(indext: Int){
-        userBasrfList.removeAt(indext)
-    }
-//    private fun EndOfTimeTask(): MutableList<String> {
-//        val options = mutableListOf<String>()
-//        val formatter = SimpleDateFormat("E MMM d", Locale.getDefault())
-//        val calendar = Calendar.getInstance()
-//        options.add(formatter.format(calendar.time))
-//        calendar.add(Calendar.DATE, 1)
-//        return options
-//
-//    }
-    fun updateDate(time: String) {
-        _date.value = time
+        userBasrfTask.removeAt(indext)
     }
 
+    fun updateDate(dataUP: String) {
+    date.value = dataUP
+    }
 
+//    fun updateList() {
+//      userBasrfTask.set(indext,taskTask)
+//    }
 
+fun updateCurrentData(taskID:Int){
+    var task= userBasrfTask.find { it.id==taskID }
+    title.value=task?.title
+    date.value = task?.date
+    subTitle.value=task?.subTitle
+    comblet.value=task?.importing
+}
 
-//    fun setTitle(titleValue: String ) {
-//        _title.value = titleValue
-//    }
-//    fun setSubTitle(subTitleValue: String){
-//        _subTitle.value = subTitleValue
-//    }
-//    fun setData(dateValue: String?){
-//        _date.value = dateValue
-//    }
-//
 
 
 
