@@ -3,6 +3,7 @@ package com.example.todolist.model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.todolist.Date.userBasrfTask
+import java.util.*
 
 var coreID=0
 data class TaskData(var title: String?="", var subTitle: String?="", var date: String?="",
@@ -51,9 +52,11 @@ fun camperBetweenTime(camper:Long){
     timeCompare.value = camper
 }
 
-    fun resetTextTaskView(TextView:String){
-        taxtTaskTime.value=TextView
-    }
+
+
+fun RasetTextView(){
+    taxtTaskTime.value=""
+}
 
 fun resetTask(){
     title.value=""
@@ -62,6 +65,16 @@ fun resetTask(){
     timeCompare.value=0
     taxtTaskTime.value = ""
 }
+    fun TaskTime() {
+        val x =  if (date.value ==""){
+         taxtTaskTime.value="Pick a Time"}
+        else if (timeCompare.value!!.toLong() < Calendar.getInstance().timeInMillis) {
+         taxtTaskTime.value="Time up"
+        }
+        else {
+           taxtTaskTime.value="there is still time"
+        }
+    }
 
 
 }

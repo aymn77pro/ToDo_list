@@ -44,7 +44,8 @@ class Edit_ToDo : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             editTodo = this@Edit_ToDo
         }
-            TaskTime()
+
+        sharedViewModel.TaskTime()
 
         arguments.let {
             taskID= it?.getInt("id",0)!!
@@ -63,6 +64,7 @@ class Edit_ToDo : Fragment() {
     fun EditNote() {
 
         sharedViewModel.EditTask(indext)
+
         findNavController().navigate(R.id.action_edit_ToDo_to_listOfToDo)
     }
 
@@ -103,19 +105,7 @@ class Edit_ToDo : Fragment() {
         val format = SimpleDateFormat(datePattern, Locale.getDefault())
         return format.format(Date(dateMilliseconds))
     }
-                     //-------------------- caper between times-------------------------//
-    fun TaskTime() {
-     val x =  if (sharedViewModel.date.value ==""){
-            "Pick a Time"}
-        else if (sharedViewModel.timeCompare.value!!.toLong() < Calendar.getInstance().timeInMillis) {
-            "Time up"
-            }
-        else {
-            "there is still time"
-    }
-        sharedViewModel.resetTextTaskView(x)
 
-}
 }
 
 

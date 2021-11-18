@@ -80,6 +80,7 @@ class AddNote : BottomSheetDialogFragment() {
     }
 
     fun addNewNote(){
+        shearModelView.TaskTime()
         shearModelView.addTask()
 //        val actionAddNote = AddNoteDirections.actionAddNote2ToListOfToDo(title = title.toString(),
 //                subTitle = subTitle.toString(),data = data,false,indext = 0, timeTask = 0)

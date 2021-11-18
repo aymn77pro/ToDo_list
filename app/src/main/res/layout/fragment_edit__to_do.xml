@@ -123,6 +123,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/TimeCamper"
             android:gravity="center"
+            android:layout_marginTop="16sp"
             android:textSize="20sp"
             android:textStyle="bold"
             android:text="@={viewModel.taxtTaskTime}"
