@@ -45,7 +45,7 @@ class Edit_ToDo : Fragment() {
             editTodo = this@Edit_ToDo
         }
 
-        sharedViewModel.TaskTime()
+        sharedViewModel.RasetTextView()
 
         arguments.let {
             taskID= it?.getInt("id",0)!!

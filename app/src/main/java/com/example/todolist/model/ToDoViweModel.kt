@@ -50,13 +50,14 @@ fun camperBetweenTime(camper:Long){
 
 
 fun RasetTextView(){
-    taxtTaskTime.value=""
+    TaskTime()
 }
 
 fun resetTask(){
     title.value=""
     subTitle.value=""
     date.value=""
+    comblet.value=false
     timeCompare.value=0
     taxtTaskTime.value = ""
 }
