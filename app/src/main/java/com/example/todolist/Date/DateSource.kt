@@ -5,9 +5,9 @@ import com.example.todolist.model.ToDoViweModel
 
 class DateSource {
     val viewModel = ToDoViweModel()
-   fun loadNote(): MutableList<TaskData> {
-     return userBasrfTask
-}
+    fun loadNote(): MutableList<TaskData> {
+        return userBasrfTask
+    }
 }
 
 var userBasrfTask: MutableList<TaskData> = mutableListOf()

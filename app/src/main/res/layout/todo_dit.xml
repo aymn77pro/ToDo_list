@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.todolist.model.ToDoViweModel" />
+
         <variable
             name="editToDo"
             type="com.example.todolist.Edit_ToDo" />
@@ -15,13 +17,13 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cerdView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:id="@+id/cerdView">
+        android:padding="20dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,9 +33,9 @@
                 android:id="@+id/titleName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{viewModel.title}"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:text="@{viewModel.title}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,12 +48,12 @@
                 app:layout_constraintStart_toStartOf="@id/titleName"
                 app:layout_constraintTop_toBottomOf="@id/titleName" />
 
-          <CheckBox
+            <CheckBox
                 android:id="@+id/completedlist"
                 android:layout_width="38dp"
                 android:layout_height="29dp"
-                android:padding="16sp"
                 android:checked="@={viewModel.comblet}"
+                android:padding="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,10 +62,10 @@
                 android:id="@+id/datelist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="8dp"
                 android:text="@{viewModel.date}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="@string/time" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

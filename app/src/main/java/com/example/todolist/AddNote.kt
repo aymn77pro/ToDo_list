@@ -18,8 +18,8 @@ class AddNote : BottomSheetDialogFragment() {
 
     private var _binding: FragmentAddNoteBinding? = null
     val binding get() = _binding
-    val shearModelView :ToDoViweModel by activityViewModels()
-    var Time:String=""
+    val shearModelView: ToDoViweModel by activityViewModels()
+    var Time: String = ""
     var time: Long = 0
 
 
@@ -29,9 +29,9 @@ class AddNote : BottomSheetDialogFragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_note, container, false)
         return _binding?.root
@@ -58,27 +58,27 @@ class AddNote : BottomSheetDialogFragment() {
         _binding = null
     }
 
-    fun  showDatePicker() {
+    fun showDatePicker() {
 
         val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Select").setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-            .build()
+                .setTitleText("Select").setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build()
         datePicker.show(parentFragmentManager, "DatePicker")
         datePicker.addOnPositiveButtonClickListener {
             time = it
-          Time =  convertMillisecondsToReadableDate(it, "yyyy/MM/dd")
+            Time = convertMillisecondsToReadableDate(it, "yyyy/MM/dd")
             shearModelView.updateDate(Time)
             shearModelView.camperBetweenTime(time)
         }
 
     }
 
-    private fun convertMillisecondsToReadableDate (dateMilliseconds: Long, datePattern: String): String{
+    private fun convertMillisecondsToReadableDate(dateMilliseconds: Long, datePattern: String): String {
         val format = SimpleDateFormat(datePattern, Locale.getDefault())
         return format.format(Date(dateMilliseconds))
     }
 
-    fun addNewNote(){
+    fun addNewNote() {
         shearModelView.addTask()
         findNavController().navigate(R.id.action_addNote2_to_listOfToDo)
     }
