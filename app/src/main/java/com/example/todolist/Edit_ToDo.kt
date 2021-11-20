@@ -75,17 +75,14 @@ class Edit_ToDo : Fragment() {
     fun showDatePicker() {
 
         val datePicker = MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select").setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                .build()
-        datePicker.show(parentFragmentManager, "DatePicker")
+                .setTitleText("Select").setSelection(MaterialDatePicker.todayInUtcMilliseconds()).build()
+        datePicker.show(parentFragmentManager,"DatePicker")
         datePicker.addOnPositiveButtonClickListener {
             smallTime = it
-            Time = convertMillisecondsToReadableDate(it, "yyyy/MM/dd ")
+            Time = convertMillisecondsToReadableDate(it, "EEE dd/MM/yyyy")
 
             sharedViewModel.updateDate(Time)
             sharedViewModel.camperBetweenTime(smallTime)
-
-
         }
 
     }

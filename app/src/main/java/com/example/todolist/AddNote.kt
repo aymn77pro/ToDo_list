@@ -66,7 +66,7 @@ class AddNote : BottomSheetDialogFragment() {
         datePicker.show(parentFragmentManager, "DatePicker")
         datePicker.addOnPositiveButtonClickListener {
             time = it
-            Time = convertMillisecondsToReadableDate(it, "yyyy/MM/dd")
+            Time = convertMillisecondsToReadableDate(it, "EEE dd/MM/yyyy")
             shearModelView.updateDate(Time)
             shearModelView.camperBetweenTime(time)
         }
